@@ -1,4 +1,3 @@
-
 public class BulbasaurThing extends PokeThing {
 
 	/**
@@ -30,6 +29,7 @@ public class BulbasaurThing extends PokeThing {
 	{
 		putFlower();
 		move();
+		movementPattern();
 	}
 	
 	/**
@@ -40,4 +40,18 @@ public class BulbasaurThing extends PokeThing {
 		Gui g = getBoard().getGui();
 		g.appendTextWindow("Bulbasaur has been tickled.");
 	}
+
+public void movementPattern()
+{
+	// Check the 'next' Location.  If there is a PokeThing or wall there, turn.
+	boolean blocked;
+	boolean stuck;
+		
+	Location nextLoc = getDirection().getNextLocation(getLocation()); 
+	stuck = !(nextLoc.isValid(getBoard()));
+	if (stuck)
+	{
+		setDirection(getDirection().left());
+	}
+}
 }
